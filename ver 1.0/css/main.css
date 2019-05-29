@@ -1,22 +1,12 @@
-@font-face {
-    font-family: "Dana-Yad";
-    src: url(../fonts/DanaYad.otf) format("truetype");
-}
-
-
 body {
     background-image: url(../img/background.png);
     background-size: cover;
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
+    font-family: 'Indie Flower', cursive;
     color: white;
     margin: 0;
     width: 100vw;
     height: 100vh;
     font-size: 20px;
-}
-
-.rtl {
-    direction: rtl;
 }
 
 .logo-container, .input-container, .filter-container, .filter, .sort-container, .list-container, .stats-container, .todo-list {
@@ -59,14 +49,13 @@ header {
 }
 
 .importance {
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
+    font-family: 'Indie Flower', cursive;
     font-size: 1rem;
     height: 50%;
     background: none;
     color: white;
     border: 0.5px solid white;
     margin-right: 10px;
-    margin-left: 1%;
 }
 
 option {
@@ -74,7 +63,7 @@ option {
 }
 
 .user-input {
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
+    font-family: 'Indie Flower', cursive;
     font-size: 2rem;
     width: 40%;
     height: 40%;
@@ -86,11 +75,11 @@ option {
 }
 
 .user-input:hover {
-    box-shadow: 0px 0px 1px 1px white inset;
+    box-shadow:0px 0px 1px 1px white inset;
 }
 
 button {
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
+    font-family: 'Indie Flower', cursive;
     font-size: 1.5rem;
     background: none;
     border: 0.5px solid white;
@@ -99,26 +88,8 @@ button {
     height: 50%;
 }
 
-.add-button {
-    margin-left: 1%;
-}
-
 button:hover, .importance:hover {
-    box-shadow: 0px 0px 5px 3px #ffffff;
-}
-
-.set-lang {
-    margin-left: auto;
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
-    font-size: 1rem;
-    background: none;
-    color: white;
-    border: 0.5px solid white;
-}
-
-.set-lang-rtl {
-    margin: 0;
-    margin-right: auto;
+    box-shadow:0px 0px 5px 3px #ffffff ;
 }
 
 .sort-container {
@@ -129,12 +100,11 @@ button:hover, .importance:hover {
 }
 
 .sort {
-    font-family: 'Indie Flower', 'Dana-Yad', cursive;
+    font-family: 'Indie Flower', cursive;
     font-size: 1rem;
     background: none;
     color: white;
     margin-left: 1%;
-    margin-right: 1%;
     border: 0.5px solid white;
 }
 
@@ -178,7 +148,7 @@ button:hover, .importance:hover {
     flex-direction: column;
     flex-wrap: wrap;
     padding: 1%;
-    box-shadow: 0px 0px 5px 2px #000000 inset;
+    box-shadow:0px 0px 5px 2px #000000 inset;
 }
 
 .todo-item {
@@ -194,12 +164,12 @@ button:hover, .importance:hover {
 
 @keyframes fade-in {
     0% {
-        opacity: 0;
+      opacity: 0;
     }
     100% {
-        opacity: 1;
+      opacity: 1;
     }
-}
+  }
 
 ul {
     list-style-type: none;
@@ -216,17 +186,12 @@ li {
     color: black;
 }
 
-.stats-rtl {
-    justify-content: flex-start;
-    color:white;
-}
-
 .stats-container span {
     margin: 0 5px;
 }
 
 .filter-selected {
-    box-shadow: 0px 0px 10px 2px #0096df;
+    box-shadow:0px 0px 10px 2px #0096df ;
 }
 
 .completed {
@@ -250,10 +215,6 @@ li {
     height: 25px;
 }
 
-.star-rtl {
-    margin: 0;
-    margin-right: 10px;
-}
 .confirm-delete {
     position: fixed;
     top: 35%;
@@ -266,14 +227,6 @@ li {
     flex-direction: column;
     /* display: none; */
     animation: wobble-hor-bottom 0.8s both;
-}
-
-.confirm-delete-rtl {
-    padding: 20px 100px;
-}
-
-.confirm-delete p {
-    margin: 0;
 }
 
 @keyframes wobble-hor-bottom {
@@ -325,24 +278,30 @@ li {
 }
 
 @keyframes shake-horizontal {
-    0%, 100% {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
     }
-    10%, 30%, 50%, 70% {
-        -webkit-transform: translateX(-10px);
-        transform: translateX(-10px);
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-10px);
+              transform: translateX(-10px);
     }
-    20%, 40%, 60% {
-        -webkit-transform: translateX(10px);
-        transform: translateX(10px);
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
     }
     80% {
-        -webkit-transform: translateX(8px);
-        transform: translateX(8px);
+      -webkit-transform: translateX(8px);
+              transform: translateX(8px);
     }
     90% {
-        -webkit-transform: translateX(-8px);
-        transform: translateX(-8px);
+      -webkit-transform: translateX(-8px);
+              transform: translateX(-8px);
     }
-}
+  }

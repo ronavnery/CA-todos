@@ -2,6 +2,118 @@
 var gTodos;
 var gFilterBy = 'All';
 var gSortBy;
+var gTranslations = {
+    'importance-title': {
+        en: 'Importance',
+        he: 'חשיבות'
+    },
+    'importance-low': {
+        en: 'Low',
+        he: 'נמוכה'
+    },
+    'importance-med': {
+        en: 'Medium',
+        he: 'בינונית'
+    },
+    'importance-high': {
+        en: 'High',
+        he: 'גבוהה'
+    },
+    'user-input': {
+        en: 'Add a task...',
+        he: 'משימה חדשה...'
+    },
+    add: {
+        en: 'Add',
+        he: 'הוסף'
+    },
+    'sort-title': {
+        en: 'Sort by:',
+        he: 'מיין לפי:'
+    },
+    'sort-abc': {
+        en: 'Alphabet',
+        he: 'אלפבית'
+    },
+    'sort-time': {
+        en: 'Creation time',
+        he: 'תאריך יצירה'
+    },
+    'sort-imp': {
+        en: 'Importance',
+        he: 'חשיבות'
+    },
+    'sort-cus': {
+        en: 'Manual',
+        he: 'ידנית'
+    },
+    'filter-all': {
+        en: 'All',
+        he: 'כל המשימות'
+    },
+    'filter-act': {
+        en: 'Active',
+        he: 'לביצוע'
+    },
+    'filter-com': {
+        en: 'Completed',
+        he: 'הושלמו'
+    },
+    'stats-tot': {
+        en: 'Total items:',
+        he: 'סה"כ משימות:'
+    },
+    'stats-act': {
+        en: 'Active items:',
+        he: 'לביצוע:'
+    },
+    'delete-title': {
+        en: ' Are you sure you want to delete?',
+        he: 'בטוח למחוק?'
+    },
+    'delete-yes': {
+        en: 'Delete',
+        he: 'מחק'
+    },
+    'delete-no': {
+        en: 'Keep',
+        he: 'השאר'
+    },
+    'noAnyTodosMsg': {
+        en: 'There\'s no Todo\'s in here.<br>Add some above to get started.',
+        he: 'אין כאן משימות, הוסף כמה בשביל להתחיל...'
+    },
+    'noActiveTodosMsg': {
+        en: 'There\'s no active Todo\'s.',
+        he: 'אין משימות פעילות.'
+    },
+    'noCompletedTodosMsg': {
+        en: 'There\'s no completed Todo\'s.',
+        he: 'אין משימות שבוצעו.'
+    }
+}
+
+function doTrans() {
+    var els = document.querySelectorAll('[data-trans]');
+    els.forEach(function(el) {
+        var transKey = el.dataset.trans;
+        var translatedTxt = getTrans(transKey);
+        if (el.nodeName === 'INPUT') {
+            el.setAttribute('placeholder', translatedTxt);
+        } else {
+            el.innerText = translatedTxt;
+        }
+    })
+}
+
+function getTrans(key) {
+    var toTranslate = gTranslations[key];
+    if (!toTranslate) return 'Unknown';
+    var translatedOutput = toTranslate[gCurrLang];
+    
+    if (!translatedOutput) translatedOutput = toTranslate['en'];
+    return translatedOutput;
+}
 
 function createTodos() {
     var todos = loadFromStorage('todos')

@@ -3,21 +3,18 @@ const gNoAnyTodoMsg = 'There\'s no Todo\'s in here.<br>Add some above to get sta
 const gNoActiveTodoMsg = 'There\'s no active Todo\'s.'
 const gNoCompletedTodoMsg = 'There\'s no completed Todo\'s.'
 var gTodoIdToDelete;
-var gCurrLang = 'en';
 
 function onInit() {
     createTodos();
     renderTodos();
-    onSetLang(gCurrLang);
 } 
-
 function renderTodos() {
     var strHtmls;
     var todos = getTodosForDisplay();
     if (!todos.length) {
-        if (gFilterBy === 'Completed') strHtmls = [gTranslations['noCompletedTodosMsg'][gCurrLang]]
-        else if (gFilterBy === 'Active') strHtmls = [gTranslations['noActiveTodosMsg'][gCurrLang]];
-        else strHtmls = [gTranslations['noAnyTodosMsg'][gCurrLang]]
+        if (gFilterBy === 'Completed') strHtmls = [gNoCompletedTodoMsg]
+        else if (gFilterBy === 'Active') strHtmls = [gNoActiveTodoMsg];
+        else strHtmls = [gNoAnyTodoMsg];
     }
     else {
         strHtmls = todos.map(function (todo, idx) {
@@ -41,8 +38,10 @@ function renderTodos() {
         })
     }
     document.querySelector('.todo-list').innerHTML = strHtmls.join('');
-    renderRtlExtra()
+
     renderStats();
+
+    // console.table(gTodos)
 }
 
 function renderStats() {
@@ -67,6 +66,7 @@ function onAddTodo() {
     addTodo(txt, imp);
     renderTodos();
     renderClearUserInput();
+    console.table(gTodos); // remove later 
 }
 
 function onDeleteTodo(ev, todoId) {
@@ -82,11 +82,11 @@ function onToggleTodo(todoId) {
 }
 
 function onSetFilter(elCriteria) {
-    console.log('Filtering by', elCriteria.dataset.filter);
+    console.log('Filtering by', elCriteria.innerText);
     var elFilters = document.querySelectorAll('.filter');
     elFilters.forEach(function(filter) { filter.classList.remove('filter-selected')});
     elCriteria.classList.add('filter-selected');
-    setFilter(elCriteria.dataset.filter);
+    setFilter(elCriteria.innerText);
     renderTodos();
 }
 
@@ -116,9 +116,10 @@ function onMoveDownItem(ev, itemIdx) {
     renderTodos();
 }
 
+
 function deleteOrKeep(el) {
     var elConfirmDelete = document.querySelector('.confirm-delete');
-    if (el.dataset.delete === 'Delete') {
+    if (el.innerText === 'Delete') {
         deleteTodo(gTodoIdToDelete);
         elConfirmDelete.classList.add('hide');
         renderTodos();
@@ -129,29 +130,4 @@ function onPromoteItem(ev, todoId) {
     ev.stopPropagation();
     promoteItem(todoId);
     renderTodos();
-}
-
-function onSetLang(lang) {
-    gCurrLang = lang;
-    if (lang === 'he') {
-        $('body').addClass('rtl');
-        $('#hebrew').attr('selected', true)
-        $('.set-lang').addClass('set-lang-rtl');
-        $('.star-1, .star-2, .star-3').addClass('star-rtl');
-        $('.stats-container').addClass('stats-rtl');
-        $('.confirm-delete').addClass('confirm-delete-rtl');
-        
-    }
-    else {
-        $('body').removeClass('rtl');
-        $('.set-lang').removeClass('set-lang-rtl');
-        $('.stats-container').removeClass('stats-rtl');
-        $('.confirm-delete').removeClass('confirm-delete-rtl');
-    }
-    saveToStorage();
-    doTrans();
-}
-
-function renderRtlExtra() {
-    if (gCurrLang === 'he') $('.star-1, .star-2, .star-3').addClass('star-rtl');
 }

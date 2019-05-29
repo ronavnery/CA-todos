@@ -12,11 +12,9 @@ function makeId(length=5) {
 function saveToStorage(key, value) {
     var strValue = JSON.stringify(value);
     localStorage.setItem(key, strValue);
-    localStorage.setItem('lang', gCurrLang);
 }
 
 function loadFromStorage(key) {
-    gCurrLang = localStorage.getItem('lang')
     return JSON.parse(localStorage.getItem(key))
 }
 

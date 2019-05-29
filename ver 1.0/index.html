@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todos</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body onload="onInit()">
+
+    <div class="main-container">
+        <header>
+            <div class="logo-container"><img class="logo" src="img/logo.png"></div>
+            <div class="top-bar">
+                <div class="input-container">
+
+                    <input onclick="onPutInput()" class="user-input" placeholder="Add a task...">
+                    <select class="importance">
+                            <option selected disabled hidden>Importance</option>
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                        </select>
+                    <button onclick="onAddTodo()">Add</button>
+                </div>
+                <div class="sort-container">
+                    Sort by:
+                    <select class="sort" onchange="onSetSort(this.value)">
+                        <option value="Alphabet">Alphabet (A->B)</option>
+                        <option value="Creation time" selected="selected">Creation time (Newest first)</option>
+                        <option value="Importance">Importance (Highest first)</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-container">
+            <div class="filter-container">
+                <span class="filter filter-all filter-selected" onclick="(onSetFilter(this))">All</span>
+                <span class="filter filter-active" onclick="(onSetFilter(this))">Active</span>
+                <span class="filter filter-completed" onclick="(onSetFilter(this))">Completed</span>
+            </div>
+
+            <div class="list-container">
+                <ul class="todo-list"></ul>
+                <div class="stats-container">
+                    Total items: <span class="total-count"></span>,
+                    Active: <span class="active-count"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="confirm-delete hide">Are you sure you want to delete?
+        <button class="yes" onclick="deleteOrKeep(this)">Delete</button>
+        <button class="no" onclick="deleteOrKeep(this)">Keep</button>
+    </div>
+    <script src="js/util-service.js"></script>
+    <script src="js/todo-service.js"></script>
+    <script src="js/todo-controller.js"></script>
+</body>
+
+</html>
